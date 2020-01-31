@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_X_REQUESTED_WITH
     if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         require_once "dbConnect.php";
 
-        if (isset($_GET['id']) && isset($_GET['value']) && $_GET['value'] == 1 && $_SESSION['id'] == $_GET['id']) {
+        if (isset($_GET['value']) && $_GET['value'] == 1) {
 
             // send all shared locations of logged in user
             $query = 'SELECT * FROM location WHERE user = ' . $_SESSION['id'];
@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_X_REQUESTED_WITH
                             echo "<td>" . $row['status'] . "</td>";
                         else
                             echo "<td>_</td>";
-                        echo "<td>" . $row['dateTime'] . "</td>";
+                        $dt = date("D, M d, Y", strtotime($row['dateTime']));
+                        echo "<td>" . $dt . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";

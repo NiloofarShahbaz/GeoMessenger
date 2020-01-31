@@ -276,6 +276,14 @@ table tr:nth-child(even) {
     background-color: #f8f8f8;
 }
 
+table tr:hover{
+    background-color: #e6ac00;
+    cursor: pointer;
+}
+table tr:first-child:hover{
+    background-color: white;
+}
+
 .popup_content{
     font-size: 16px!important;
 }
@@ -303,5 +311,49 @@ table tr:nth-child(even) {
 }
 .popup_btn:hover{
     background-color: #0078A8;
+}
 
+.message {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 90%;
+}
+
+.my-message {
+    border-color: #ccc;
+    background-color: #ddd;
+    float: right;
+}
+
+.message::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.message img {
+    float: left;
+    max-width: 40px;
+    width: 100%;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.message img.right {
+    float: right;
+    margin-left: 10px;
+    /*margin-right:0;*/
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
 }

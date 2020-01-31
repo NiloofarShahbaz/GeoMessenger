@@ -1,3 +1,5 @@
+let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
 function hideOrRevealPassword() {
     let input = document.getElementById('loginPass');
     let icon = document.getElementById('passIcon');
@@ -42,9 +44,14 @@ function createPopupContent(username, online, status, location_dateTime, request
     html += '</div>';
     html += '<div class="popup_status">' + status + '</div>';
     let date = new Date(location_dateTime);
-    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    html += '<div class="popup_datetime mt-2"><i class="far fa-calendar-alt" style="margin-right: 3px;"></i>'+ date.toLocaleDateString('en-Us', options) + '</div>';
+    html += '<div class="popup_datetime mt-2"><i class="far fa-calendar-alt" style="margin-right: 3px;"></i>'+
+        date.toLocaleDateString('en-Us', options) + '</div>';
     html += '</div>';
     return html;
 }
 
+function goToChatRoom(user_id) {
+    let elem = $('#friends');
+    elem.html('').css('padding-left', '10px', 'padding-right', '10px');
+
+}

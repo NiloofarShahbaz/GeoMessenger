@@ -1,17 +1,40 @@
 $(document).ready(function () {
     let getUserLocations = function () {
-        let sessionId = get_session_id();
         $.ajax({
             type: "GET",
             url: "sendUserLocations.php",
             dataType: 'text',
-            data: {'value': 1, 'id': sessionId}
+            data: {'value': 1}
         }).done(function (data) {
             $('#myLocations').append(data);
         })
     };
     getUserLocations();
+    let getFriendsLocations = function(){
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "sendUserLocations.php",
+            data:{'value':3}
+        }).done(function (data) {
+            if(data.success){
+                console.log(data);
+                let elem = $('#friends');
+                let result = data.result;
+                let html = '<table><tr>';
+                html += '<th style="width: 15%;">username</th><th style="width: 15%;">location name</th><th>status</th><th style="width: 15%;">date</th></tr>';
+                for(let i=0; i<result.length; i++){
+                    let date = new Date(result[i]['location_dateTime']);
+                    html += '<tr onclick="goToChatRoom('+ result[i]['user_id'] + ')"><td>' + result[i]['username'] + '</td><td>Location '+ result[i]['location_id'] +'</td><td>'+
+                        result[i]['location_status']+'</td><td>'+ date.toLocaleDateString('en-Us', options) +'</td></tr>';
+                }
 
+                elem.append(html);
+
+            }
+        })
+    };
+    getFriendsLocations();
     $('#mapForm').submit(function (event) {
         $('#form-button-icon').removeClass('fa-share').addClass('fa-circle-notch fa-spin');
         $('#form-result').removeClass('mt-1 mb-1').remove('color', 'red');

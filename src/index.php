@@ -76,10 +76,26 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] !== true){
             <div id="mapId"></div>
         </div>
         <div class="col-3">
-            <div class="card" style="display: block;overflow: scroll;height: 100%;">
+            <div class="card" style="display: block;overflow: scroll;height: 100%;padding-left: 0;padding-right: 0;"">
                 <div class="card-header text-center">Friends Status</div>
-                <div class="card-body">
+                <div class="card-body" id="friends" style="padding-right: 10px;padding-left: 10px;">
+                    <div class="message">
+                        <img src="../static/bower_components/fontawesome-free-5.12.0-web/svgs/solid/user-circle.svg" style="fill: red">
+                        <p>Hello. How are you today?</p>
+                        <span class="time-right">11:00</span>
+                    </div>
 
+                    <div class="message my-message">
+                        <img src="../static/bower_components/fontawesome-free-5.12.0-web/svgs/solid/user-circle.svg" class="right">
+                        <p>Hey! I'm fine. Thanks for asking!</p>
+                        <span class="time-left">11:01</span>
+                    </div>
+
+                    <div class="message my-message">
+                        <img src="../static/bower_components/fontawesome-free-5.12.0-web/svgs/solid/user-circle.svg" class="right">
+                        <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+                        <span class="time-left">11:05</span>
+                    </div>
                 </div>
             </div>
         </div>

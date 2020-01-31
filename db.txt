@@ -1,0 +1,37 @@
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'Admin123!';
+
+CREATE DATABASE messenger;
+USE messenger;
+
+
+CREATE TABLE users(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username varchar(15) NOT NULL UNIQUE,
+    email varchar(100) NOT NULL UNIQUE,
+    password varchar(255) NOT NULL,
+    last_online DATETIME,
+    status BOOL NOT NULL DEFAULT 1
+);
+
+CREATE TABLE location(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user INT NOT NULL,
+    status nvarchar(50),
+    location_lat float(10,6) NOT NULL,
+    location_lng float(10,6) NOT NULL,
+    dateTime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+    FOREIGN KEY (user) REFERENCES users(id)
+);
+
+CREATE TABLE relationships(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user1 INT NOT NULL,
+    user2 INT NOT NULL,
+    status BOOL NOT NULL,
+    action_user INT NOT NULL,
+    FOREIGN KEY (user1) REFERENCES users(id),
+    FOREIGN KEY (user2) REFERENCES users(id),
+    UNIQUE (user1, user2)
+);
+ALTER TABLE relationships ADD CONSTRAINT CHK_IDs CHECK (user2>user1);
+
